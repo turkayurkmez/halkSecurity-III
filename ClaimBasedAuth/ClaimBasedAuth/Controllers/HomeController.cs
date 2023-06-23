@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClaimBasedAuth.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using XSRFWithMVC.Models;
 
-namespace XSRFWithMVC.Controllers
+namespace ClaimBasedAuth.Controllers
 {
     public class HomeController : Controller
     {
@@ -17,9 +18,7 @@ namespace XSRFWithMVC.Controllers
         {
             return View();
         }
-
-
-
+        [Authorize(Roles = "admin,editor")]
         public IActionResult Privacy()
         {
             return View();
@@ -29,19 +28,6 @@ namespace XSRFWithMVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public IActionResult Create(Product product)
-        {
-            return View();
         }
     }
 }

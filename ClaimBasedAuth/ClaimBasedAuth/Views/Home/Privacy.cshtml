@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+@if(User.IsInRole("admin")){
+    <p>OOO @User.Identity.Name bir Yöneticiymiş.... Saygılar</p>
+}
+else if(User.IsInRole("editor")) {
+    <p>Hmmm @User.Identity.Name, bir editörmüş... Buyurun buradan</p>
+}
